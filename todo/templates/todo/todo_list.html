@@ -71,12 +71,11 @@
         <div class="container is-max-desktop">
             <div class="card mt-6 is-flex is-justify-content-center">
                 <div class="card-content">
-                    <h1 class="title">Things to do</h1>
+                    <h1 class="title is-3 is-spaced is-uppercase">Things to do</h1>
                     <hr class="navbar-divider">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Title</th>
                                 <th>Is done</th>
                                 <th>Action</th>
@@ -85,7 +84,6 @@
                         <tbody>
                             {% for item in items %}
                             <tr>
-                                <td>{{ item.id }}</td>
                                 <td>{{ item.name }}</td>
                                 <td>
                                     {% if item.done %}
@@ -112,7 +110,7 @@
                                         
                                         <div class="dropdown-menu" id="dropdown-menu3" role="menu">
                                         <div class="dropdown-content">
-                                            <a href="#" class="dropdown-item">Edit</a>
+                                            <a href="/update/{{ item.id }}" class="dropdown-item">Edit</a>
                                             <a href="#" class="dropdown-item">Delete</a>
                                         </div>
                                         </div>
