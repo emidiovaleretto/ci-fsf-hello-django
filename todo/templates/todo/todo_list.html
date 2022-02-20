@@ -11,55 +11,155 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <style>
+        html {
+            background-color: #d0e4e9;
+        }
+        .title {
+            text-align: center;
+        }
         .icon {
             display: flex;
             justify-content: center;
             align-items: center;
         }
+        .navbar-link:hover {
+            background-color: transparent;
+        }
+        .button:hover {
+            border-color: #485fc7;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container is-max-desktop">
-        <div class="card mt-6">
-            <div class="card-content">
-                <h1 class="title">Things to do</h1>
-                <hr class="navbar-divider">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Is done</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in items %}
-                        <tr>
-                            <th>{{ item.id }}</th>
-                            <td>{{ item.name }}</td>
-                            <td>
-                                {% if item.done %}
-                                <span class="icon has-text-success">
-                                    <i class="fa-solid fa-circle-check"></i>
-                                </span>
-                                {% else %}
-                                <span class="icon has-text-warning">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                </span>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td>You have nothing to do <i class="fa-solid fa-face-smile-wink"></i></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+    <header>
+        <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+            <div class="container p-2">
+                <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <h1 class="title is-uppercase has-text-white">Todo</h1>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">                        
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="level-right">
+                                <p class="level-item"><a class="button is-info" href="/add">Add New Item</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </nav>
+    </header>
+    
+    <main>
+        <div class="container is-max-desktop">
+            <div class="card mt-6 is-flex is-justify-content-center">
+                <div class="card-content">
+                    <h1 class="title">Things to do</h1>
+                    <hr class="navbar-divider">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Is done</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>
+                                    {% if item.done %}
+                                    <span class="icon has-text-success">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </span>
+                                    {% else %}
+                                    <span class="icon has-text-warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="dropdown is-hoverable">
+                                        <div class="dropdown-trigger">
+                                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                                            <a class="navbar-link is-arrowless">
+                                                <span class="icon has-text-dark">
+                                                    <i class="fa-solid fa-ellipsis"></i>
+                                                </span>            
+                                            </a>
+                                        </button>
+                                        </div>
+                                        
+                                        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                                        <div class="dropdown-content">
+                                            <a href="#" class="dropdown-item">Edit</a>
+                                            <a href="#" class="dropdown-item">Delete</a>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td>-</td>
+                                <td>You have nothing to do</td>
+                                <td>
+                                    <span class="icon has-text-link">
+                                        <i class="fa-solid fa-face-smile-wink"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="is-flex is-justify-content-center">
+                        <a href="/add" class="button is-info">Add a new item</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
+
+                // Add a click event on each of them
+                $navbarBurgers.forEach(el => {
+                    el.addEventListener('click', () => {
+
+                        // Get the target from the "data-target" attribute
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+
+                        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+
+                    });
+                });
+            }
+
+        });
+    </script>
 </body>
 
 </html>
