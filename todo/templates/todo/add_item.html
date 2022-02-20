@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Things to do</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+            <div class="container p-2">
+                <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <h1 class="title is-uppercase has-text-white">Todo</h1>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">                        
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="level-right">
+                                <p class="level-item"><a class="button is-info" href="/">Back to home</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </nav>
+    </header>
+
+    <main>
+        <div class="container is-max-desktop">
+            <div class="card mt-6">
+                <div class="card-content">
+                    <h1 class="title">Add a new item</h1>
+                    <hr class="navbar-divider">
+                    <div class="field">
+                        <form action="add" method="POST">
+                            {% csrf_token %}
+                            <label for="item-name" class="label">Name</label>
+                            <div class="control">
+                                <input class="input" id="item-name" name="item-name" type="text"
+                                    placeholder="Enter here your item's name" required>
+                            </div>
+
+                            <div class="field">
+                                <div class="control mt-3">
+                                    <input type="checkbox" id="is-done" name="is-done">
+                                    <label for="is-done" class="checkbox">Is done</label>
+                                </div>
+                            </div>
+
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button class="button is-link">Add Item</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
