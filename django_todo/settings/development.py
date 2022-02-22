@@ -1,7 +1,7 @@
 from .settings import *
 from decouple import config
 
-DEBUG = config("DEBUG")
+DEBUG = True
 SECRET_KEY = config("SECRET_KEY_DEVELOPMENT")
 
 # ALLOWED_HOSTS
