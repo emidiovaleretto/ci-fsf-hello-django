@@ -14,24 +14,30 @@
         html {
             background-color: #d0e4e9;
         }
+
         .title {
             text-align: center;
         }
+
         .icon {
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .navbar-link:hover {
             background-color: transparent;
         }
+
         .button:hover {
             border-color: #485fc7;
         }
+
         .dropdown-content {
             border: 1px solid rgba(0, 0, 0, .1);
             background-color: #f7f7f7;
         }
+
         a.dropdown-item:hover {
             color: #ffffff;
             background-color: #485fc7;
@@ -44,17 +50,18 @@
         <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
             <div class="container p-2">
                 <div class="navbar-brand">
-                <a class="navbar-item" href="/">
-                    <h1 class="title is-uppercase has-text-white">Todo</h1>
-                </a>
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
+                    <a class="navbar-item" href="/">
+                        <h1 class="title is-uppercase has-text-white">Todo</h1>
+                    </a>
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                        data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
                 </div>
 
-                <div id="navbarBasicExample" class="navbar-menu">                        
+                <div id="navbarBasicExample" class="navbar-menu">
                     <div class="navbar-end">
                         <div class="navbar-item">
                             <div class="level-right">
@@ -64,9 +71,9 @@
                     </div>
                 </div>
             </div>
-          </nav>
+        </nav>
     </header>
-    
+
     <main>
         <div class="container is-max-desktop">
             <div class="columns">
@@ -101,15 +108,16 @@
                                         <td>
                                             <div class="dropdown is-hoverable">
                                                 <div class="dropdown-trigger">
-                                                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                                                    <button class="button" aria-haspopup="true"
+                                                        aria-controls="dropdown-menu3">
                                                         <a class="navbar-link is-arrowless">
                                                             <span class="icon has-text-dark">
                                                                 <i class="fa-solid fa-ellipsis"></i>
-                                                            </span>            
+                                                            </span>
                                                         </a>
                                                     </button>
                                                 </div>
-                                                
+
                                                 <div class="dropdown-menu" id="dropdown-menu3" role="menu">
                                                     <div class="dropdown-content">
                                                         <a href="/update/{{ item.id }}" class="dropdown-item">Edit</a>
@@ -120,18 +128,23 @@
                                                 <!-- Modal -->
                                                 <div id="modal-{{ item.id }}" class="modal">
                                                     <div class="modal-background"></div>
-                                    
+
                                                     <div class="modal-card">
                                                         <header class="modal-card-head">
-                                                            <p class="modal-card-title has-text-centered is-size-2">Delete Item</p>
+                                                            <p class="modal-card-title has-text-centered is-size-2">
+                                                                Delete Item</p>
                                                         </header>
-                                                        <section class="modal-card-body has-text-white has-background-grey-dark has-text-centered has-text-weight-medium">
-                                                            <p class=" is-size-1">Are you sure you want to delete this item?</p>
+                                                        <section
+                                                            class="modal-card-body has-text-white has-background-grey-dark has-text-centered has-text-weight-medium">
+                                                            <p class=" is-size-1">Are you sure you want to delete this
+                                                                item?</p>
                                                             <p class="is-size-3">** This action cannot be undone! **</p>
                                                         </section>
-                                                        <footer class="modal-card-foot is-flex is-justify-content-center">
+                                                        <footer
+                                                            class="modal-card-foot is-flex is-justify-content-center">
                                                             <a href="" class="button is-success">Cancel</a>
-                                                            <a href="/delete/{{ item.id }}" class="button is-danger is-outlined">Delete</a>
+                                                            <a href="/delete/{{ item.id }}"
+                                                                class="button is-danger is-outlined">Delete</a>
                                                         </footer>
                                                     </div>
                                                 </div>
@@ -196,7 +209,7 @@
 
             function closeAllModals() {
                 (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-                closeModal($modal);
+                    closeModal($modal);
                 });
             }
 
@@ -207,16 +220,18 @@
                 console.log($target);
 
                 $trigger.addEventListener('click', () => {
-                openModal($target);
+                    openModal($target);
                 });
             });
 
             // Add a click event on various child elements to close the parent modal
-            (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+            (document.querySelectorAll(
+                    '.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') ||
+            []).forEach(($close) => {
                 const $target = $close.closest('.modal');
 
                 $close.addEventListener('click', () => {
-                closeModal($target);
+                    closeModal($target);
                 });
             });
 
@@ -225,7 +240,7 @@
                 const e = event || window.event;
 
                 if (e.keyCode === 27) { // Escape key
-                closeAllModals();
+                    closeAllModals();
                 }
             });
 

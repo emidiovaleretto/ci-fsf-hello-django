@@ -20,25 +20,22 @@ def add_new_item(request):
 
     return render(request, 'todo/add_item.html')
 
+
 def update_item(request, item_id):
     item = get_object_or_404(Item, id=item_id)
-    
     if request.method == 'POST':
         form = ItemForm(request.POST, instance=item)
-        
         if form.is_valid():
             form.save()
             return redirect('get_todo_list')
-    
     form = ItemForm(instance=item)
     context = {
         'form': form
     }
-
     return render(request, 'todo/update_item.html', context)
 
 
 def delete_item(request, item_id):
     item = get_object_or_404(Item, id=item_id)
-    item.delete()       
+    item.delete()
     return redirect('get_todo_list')
